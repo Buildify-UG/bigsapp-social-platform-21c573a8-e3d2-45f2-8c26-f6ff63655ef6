@@ -1,0 +1,386 @@
+/* Prison-Escape Ludo Board Styling */
+
+.ludo-board-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #0a0a0a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ludo-board-container.bet-game-mode {
+  background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.3), 0 0 60px rgba(59, 130, 246, 0.2);
+}
+
+.ludo-board-container.normal-mode {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Prison Background Effects */
+.prison-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.metal-texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+  opacity: 0.5;
+}
+
+.chain-decoration {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 3px solid rgba(100, 100, 100, 0.4);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.chain-decoration.top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.chain-decoration.top-right {
+  top: 10px;
+  right: 10px;
+}
+
+.chain-decoration.bottom-left {
+  bottom: 10px;
+  left: 10px;
+}
+
+.chain-decoration.bottom-right {
+  bottom: 10px;
+  right: 10px;
+}
+
+.emergency-light {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: pulse-light 2s ease-in-out infinite;
+}
+
+.emergency-light.red {
+  top: 20px;
+  right: 20px;
+  background: radial-gradient(circle, #ef4444, transparent);
+}
+
+.emergency-light.blue {
+  bottom: 20px;
+  left: 20px;
+  background: radial-gradient(circle, #3b82f6, transparent);
+}
+
+@keyframes pulse-light {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.warning-panel {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ef4444 0%, #3b82f6 100%);
+  border-radius: 4px;
+  opacity: 0.2;
+  animation: flicker 3s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Board Wrapper */
+.board-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.board-svg {
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* Prison Border */
+.prison-border {
+  animation: chain-sway 4s ease-in-out infinite;
+}
+
+@keyframes chain-sway {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.chain-link {
+  animation: chain-rattle 0.3s ease-in-out infinite;
+}
+
+.chain-link:nth-child(even) {
+  animation-delay: 0.15s;
+}
+
+@keyframes chain-rattle {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(1px);
+  }
+}
+
+/* Player Bases */
+.player-base {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.player-base:hover circle {
+  r: 40;
+  opacity: 0.5;
+}
+
+/* Escape Cells */
+.escape-cell circle {
+  transition: all 0.2s ease;
+}
+
+.escape-cell:hover circle {
+  r: 10;
+  stroke: #888;
+  stroke-width: 2;
+}
+
+/* Security Checkpoint */
+.security-checkpoint {
+  animation: checkpoint-glow 2s ease-in-out infinite;
+}
+
+.vs-text {
+  animation: vs-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes checkpoint-glow {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes vs-pulse {
+  0%, 100% {
+    font-size: 24px;
+    opacity: 0.8;
+  }
+  50% {
+    font-size: 26px;
+    opacity: 1;
+  }
+}
+
+/* Escape Gate */
+.escape-gate {
+  animation: gate-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes gate-glow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.6));
+  }
+}
+
+/* Pieces */
+.piece {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.piece:hover circle {
+  r: 12;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.piece.animating {
+  animation: piece-escape 0.8s ease-out;
+}
+
+@keyframes piece-escape {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.piece-number {
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Ludo Controls */
+.ludo-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 2;
+  position: relative;
+}
+
+.dice-button {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border: none;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 2px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dice-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+  border-color: #666;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dice-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dice-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dice-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #444 0%, #222 100%);
+  border: 1px solid #666;
+  border-radius: 4px;
+  color: #10b981;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+.dice-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dice-result {
+  color: #10b981;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 6px;
+  animation: result-pop 0.5s ease-out;
+}
+
+@keyframes result-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .ludo-board-container {
+    padding: 12px;
+  }
+
+  .board-svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .dice-button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .dice-face {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+}
